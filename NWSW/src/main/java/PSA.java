@@ -134,7 +134,7 @@ public abstract class PSA {
     void countAffValue() {
         int m = table.length;
         int n = table[0].length;
-        for (int i = 0; i < m*n; i++) {
+        for (int i = 0; i < m * n; i++) {
             if (i % n == 0) {continue;}
             if (i / n == 0) {continue;}
             assignAffValueAndParent(i - n - 1, i);
@@ -162,7 +162,7 @@ public abstract class PSA {
         int n = table[0].length;
         //div n == radek
         //mod n == sloupec
-        for (int i = 0; i < m*n; i++) {
+        for (int i = 0; i < m * n; i++) {
             if (i % n == 0) {continue;}
             if (i / n == 0) {continue;}
             assignLinearValueAndParent(i - n - 1, i - 1, i - n, i);

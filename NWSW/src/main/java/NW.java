@@ -81,7 +81,7 @@ public class NW extends PSA {
         Double comparisonValue = substMatrix.score(seq1Char, seq2Char);
         double northWestValue = tableValue(northWest) + comparisonValue;
         double endValue = northWestValue;
-        double leftValueCandidate = tableValue(current-1) - gapPenalty.countAffine(1);
+        double leftValueCandidate = tableValue(current - 1) - gapPenalty.countAffine(1);
         List<Integer> leftParentCandidate = new ArrayList<>();
         leftParentCandidate.add(current - 1);
         for (int i = 2; i < current % n; i++) {
@@ -101,7 +101,7 @@ public class NW extends PSA {
             if (tableValue(current - (n * i)) - gapPenalty.countAffine(i) > upValueCandidate) {
                 upValueCandidate = tableValue(current - (n * i)) - gapPenalty.countAffine(i);
                 upParentCandidate.clear();
-                upParentCandidate.add(current- (n * i));
+                upParentCandidate.add(current - (n * i));
             }
             else if (tableValue(current - (n * i)) - gapPenalty.countAffine(i) == upValueCandidate) {
                 upParentCandidate.add(current - (n * i));
