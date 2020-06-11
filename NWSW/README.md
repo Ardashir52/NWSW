@@ -10,7 +10,7 @@ The older Needleman-Wunsch algorithm is used to find the optimal global
 alignment. That is, the best score across the entirety of both sequences, 
 whereas the Smith-Waterman algorithm finds the optimal local alignment, 
 parts of both sequences that have the most in common. 
-## Usage and Input Format
+## Usage 
 It can be seen from this brief introduction that a lot of data is required
 to make the procedure run properly, which may make passing the arguments
 a bit impractical. 
@@ -24,6 +24,7 @@ while the function of the algorithms is usually demonstrated with a simple
 linear gap, practical use favors an affine gap penalty, because experiments 
 show that it is far more likely to have few larger insertions or deletion, 
 then to have many smaller. 
+## Input format
 Consequently, the first number will be read as a linear gap value  and 
 the optional second one as an affine one. 
 Consider that the value is meant to be subtracted, therefore it is logical 
