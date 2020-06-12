@@ -75,13 +75,14 @@ public class NWSW {
         System.out.println(bundle.getString("choice1"));
         System.out.println(bundle.getString("choice2"));
         System.out.println(bundle.getString("choice3"));
-        BufferedReader bReader = new BufferedReader(new InputStreamReader(System.in));
-        String userAnswer = bReader.readLine();
-        while (!userAnswer.toUpperCase().equals("A") && !userAnswer.toUpperCase().equals("B")) {
-            System.out.println(bundle.getString("choice4"));
-            userAnswer = bReader.readLine();
+        try (BufferedReader bReader = new BufferedReader(new InputStreamReader(System.in))) {
+            String userAnswer = bReader.readLine();
+            while (!userAnswer.toUpperCase().equals("A") && !userAnswer.toUpperCase().equals("B")) {
+                System.out.println(bundle.getString("choice4"));
+                userAnswer = bReader.readLine();
+            }
+            return userAnswer.toUpperCase().equals("B");
         }
-        return userAnswer.toUpperCase().equals("B");
     }
 
     /**
@@ -92,51 +93,52 @@ public class NWSW {
     static void interactiveRun() throws IOException {
         ResourceBundle bundle = ResourceBundle.getBundle("prompts");
         System.out.println(bundle.getString("inter1"));
-        BufferedReader bReader = new BufferedReader(new InputStreamReader(System.in));
-        String vstup = bReader.readLine();
-        while (!vstup.toLowerCase().equals("help") && !vstup.toLowerCase().equals("inter") ) {
-            System.out.println(bundle.getString("inter2"));
-            vstup = bReader.readLine();
-        }
-        switch (vstup) {
-            case "help":
-                help();
-                break;
-            case "inter":
-                System.out.println(bundle.getString("inter3"));
-                String seq1 = bReader.readLine();
-                System.out.println(bundle.getString("inter4"));
-                String seq2 = bReader.readLine();
-                System.out.println(bundle.getString("inter5"));
-                String match = bReader.readLine();
-                System.out.println(bundle.getString("inter6"));
-                String mismatch = bReader.readLine();
-                System.out.println(bundle.getString("inter7"));
-                String gp = bReader.readLine();
-                System.out.println(bundle.getString("inter8"));
-                System.out.println(bundle.getString("inter9"));
-                String option = bReader.readLine();
-                while (!option.toLowerCase().equals("s") && !option.toLowerCase().equals("n")) {
-                    System.out.println(bundle.getString("inter10"));
-                    option = bReader.readLine();
-                }
-                if (option.toLowerCase().equals("s")) {
-                    try {
-                        SW interSW = new SW(seq1, seq2, match, mismatch, gp);
-                        interSW.calculate();
-                        interSW.printResults();
-                    } catch (SubstMatrix.MatrixDimensionException | GapPenalty.GapPenaltyNumericalError error) {
-                        error.printStackTrace();
+        try (BufferedReader bReader = new BufferedReader(new InputStreamReader(System.in))) {
+            String vstup = bReader.readLine();
+            while (!vstup.toLowerCase().equals("help") && !vstup.toLowerCase().equals("inter")) {
+                System.out.println(bundle.getString("inter2"));
+                vstup = bReader.readLine();
+            }
+            switch (vstup) {
+                case "help":
+                    help();
+                    break;
+                case "inter":
+                    System.out.println(bundle.getString("inter3"));
+                    String seq1 = bReader.readLine();
+                    System.out.println(bundle.getString("inter4"));
+                    String seq2 = bReader.readLine();
+                    System.out.println(bundle.getString("inter5"));
+                    String match = bReader.readLine();
+                    System.out.println(bundle.getString("inter6"));
+                    String mismatch = bReader.readLine();
+                    System.out.println(bundle.getString("inter7"));
+                    String gp = bReader.readLine();
+                    System.out.println(bundle.getString("inter8"));
+                    System.out.println(bundle.getString("inter9"));
+                    String option = bReader.readLine();
+                    while (!option.toLowerCase().equals("s") && !option.toLowerCase().equals("n")) {
+                        System.out.println(bundle.getString("inter10"));
+                        option = bReader.readLine();
                     }
-                } else {
-                    try {
-                        NW interNW = new NW(seq1, seq2, match, mismatch, gp);
-                        interNW.calculate();
-                        interNW.printResults();
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                    if (option.toLowerCase().equals("s")) {
+                        try {
+                            SW interSW = new SW(seq1, seq2, match, mismatch, gp);
+                            interSW.calculate();
+                            interSW.printResults();
+                        } catch (SubstMatrix.MatrixDimensionException | GapPenalty.GapPenaltyNumericalError error) {
+                            error.printStackTrace();
+                        }
+                    } else {
+                        try {
+                            NW interNW = new NW(seq1, seq2, match, mismatch, gp);
+                            interNW.calculate();
+                            interNW.printResults();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
-                }
+            }
         }
     }
 

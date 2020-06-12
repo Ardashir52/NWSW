@@ -116,7 +116,7 @@ public class SW extends PSA {
         }
         double leftMaxValueCandidate = 0.0;
         int leftParentCandidate = -1;
-        for (int i = 1; i < current%(n); i++) {
+        for (int i = 1; i < current % (n); i++) {
             if (tableValue(current - i) - gapPenalty.countAffine(i) > leftMaxValueCandidate) {
                 leftMaxValueCandidate = tableValue(current-i) - gapPenalty.countAffine(i);
                 leftParentCandidate = current - i;

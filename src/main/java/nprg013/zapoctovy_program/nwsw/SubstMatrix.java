@@ -17,7 +17,7 @@ public class SubstMatrix {
      * The numerical values of the source matrix represented by a 2D table
      * of doubles.
      */
-    private final Double[][] values;
+    private final double[][] values;
     /**
      * Determines, whether the matrix was constructed under the interactive mode.
      */
@@ -60,7 +60,7 @@ public class SubstMatrix {
                     }
                     keys.add(oneCharCode(key));
                 }
-                values = new Double[keys.size()][keys.size()];
+                values = new double[keys.size()][keys.size()];
                 for (int i = 1; i < vstupniTabulka.size(); i++) {
                     for (int j = 1; j < vstupniTabulka.get(i).length; j++) {
                         values[i - 1][j - 1] = Double.parseDouble(vstupniTabulka.get(i)[j]);
@@ -83,7 +83,7 @@ public class SubstMatrix {
     public SubstMatrix(String match, String mismatch) throws MatrixDimensionException {
         this.interactive = true;
         try {
-            values = new Double[1][2];
+            values = new double[1][2];
             values[0][0] = Double.parseDouble(match);
             values[0][1] = Double.parseDouble(mismatch);
         }

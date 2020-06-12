@@ -195,7 +195,7 @@ public abstract class PSA {
         ResourceBundle bundle = ResourceBundle.getBundle("prompts");
         int counter = 1;
         for (StringBuilder[] result: results) {
-            System.out.println(bundle.getString("option")+counter);
+            System.out.println(bundle.getString("option") + counter);
             System.out.println(result[0].reverse());
             System.out.println(result[1].reverse());
             counter++;

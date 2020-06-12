@@ -175,7 +175,7 @@ public class NW extends PSA {
         results = new ArrayList<>();
         int m = table.length;
         int n = table[0].length;
-        int start = m * n -1;
+        int start = m * n - 1;
         backtrackTree(new StringBuilder(), new StringBuilder(), start);
     }
 

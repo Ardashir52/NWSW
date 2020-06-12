@@ -67,7 +67,7 @@ public class GapPenalty {
     /**
      * The method used to determine whether linear or affine gap should be used in calculations.
      *
-     * @return  The type of gap, returned as a string to provide clarity.
+     * @return  The type of gap.
      */
     public Type getType() {
         switch (this.gapPenalty.length) {
@@ -80,6 +80,9 @@ public class GapPenalty {
         }
     }
 
+    /**
+     * Enumerates the possible types of a gap penalty.
+     */
     public enum Type {
         LINEAR,
         AFFINE,
